@@ -1,66 +1,69 @@
 \documentclass{jsarticle}
 \usepackage{amsmath}
+%
 \begin{document}
-
+%
 \title{ロケットシミュレーション}
 \author{sksat}
 \maketitle
-
+%
 \section{はじめに}
-
-これは浅野学園地学部のロケットシミュレーション概要です。
+%
+これは浅野学園地学部のロケットシミュレーション概要です。%理系の文章は「。、」ではなく「．，」にすべき．
 多分色々間違いがあると思うので、もし気がついたらIssueなりPRなりしてくれると助かります。
-
+%
 \section{気が早い本題}
-
-$時間をt, 垂直方向をx軸, 速度をv, 加速度をa として、$
+%
+時間を$t$, 垂直方向を$x$軸, 速度を$v$, 加速度を$a$ として、
 エンジンの推力を ${\rm E}(t),$
-$空気抵抗を {\rm D}(v) とする。$
-
-この単純なモデルではロケットが受ける力は、
-エンジンの推力、空気抵抗、重力である。
-
-$空気抵抗が速度vに比例するとすると、rを比例定数として、$
-\begin{equation}
+空気抵抗を ${\rm D}(v)$ とする。
+%
+この単純なモデルではロケットが受ける力は、エンジンの推力、空気抵抗、重力である。
+%
+空気抵抗が速度$v$に比例するとすると、$r$を比例定数として、
+\begin{align}%equation環境は古いらしい．今はalign環境推奨らしい．
 	{\rm D}(v) = r v
-\end{equation}
-
+\end{align}
+%
 となる。
-
-よって、このロケットの運動はは2階微分方程式
-\begin{equation}
-	m \frac{d^2x}{dt^2} - r \frac{dx}{dt} = {\rm E}(t) - mg
-\end{equation}
-
+%
+よって、このロケットの運動はは2階の常微分方程式
+\begin{align}%fracでもdfracでもこの場合同じだが，私の癖でdfracにする．見やすい場合が多い．私の好み．
+	m \dfrac{d^2x}{dt^2} - r \dfrac{dx}{dt} = {\rm E}(t) - mg
+\end{align}
+%
 と表される。
-
-$m \neq 0 より、両辺をmで割って、$
-\begin{equation}
-	\frac{d^2x}{dt^2} - \frac{r}{m} \frac{dx}{dt} = \frac{{\rm E}(t)}{m} - g
-\end{equation}
-
+%
+$m \neq 0$より、両辺を$m$で割って、
+\begin{align}
+	\dfrac{d^2x}{dt^2} - \dfrac{r}{m} \dfrac{dx}{dt} = \dfrac{{\rm E}(t)}{m} - g
+\end{align}
+%
 ここで、
 \begin{equation}
-	y := \frac{dx}{dt}
+	y := \dfrac{dx}{dt}
 \end{equation}
-
+%
 とおくと、
-
-\begin{eqnarray}
-	\frac{dy}{dt} - \frac{r}{m} y = \frac{{\rm E}(t)}{m} -g \\
-	\frac{dy}{dt} = \frac{r}{m} y + \frac{{\rm E}(t)}{m} -g
-\end{eqnarray}
-
-つまり、連立方程式
-\begin{eqnarray}
+%
+\begin{align}
+	\dfrac{dy}{dt} - \dfrac{r}{m} y = \dfrac{{\rm E}(t)}{m} -g
+\end{align}
+となる。式変形すると、
+\begin{align}
+	\dfrac{dy}{dt} = \dfrac{r}{m} y + \dfrac{{\rm E}(t)}{m} -g
+\end{align}
+%
+つまり、連立常微分方程式
+\begin{align}
 	\left\{
 		\begin{array}{l}
-			\frac{dx}{dt} = y \\
-			\frac{dy}{dt} = \frac{r}{m} y + \frac{{\rm E}(t)}{m} -g
+			\dfrac{dx}{dt} = y \vspace{2mm}\\
+			\dfrac{dy}{dt} = \dfrac{r}{m} y + \dfrac{{\rm E}(t)}{m} -g \vspace{1mm}
 		\end{array}
 	\right.
-\end{eqnarray}
-
+\end{align}
+%
 を解けばいい。
-
+%
 \end{document}
