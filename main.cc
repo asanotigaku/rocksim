@@ -44,6 +44,8 @@ int main(int argc, char **argv){
 
 	sksat::math::vector<> x(0., 0.);
 
+	sksat::math::vector<> k1, k2, k3, k4;
+
 	bool liftoff_flg = false;
 
 	for(auto i=0; t<=t_limit; ++i){
@@ -53,8 +55,15 @@ int main(int argc, char **argv){
 			<< x.get_x()
 //			<< engine(t)
 			<< std::endl;
+		// Euler method
+//		x = x + dt * func(x);
 
-		x = x + dt * func(x);
+		// RK4 method
+		k1 = func(x);
+		k2 = func(x + dt / 2. * k1);
+		k3 = func(x + dt / 2. * k2);
+		k4 = func(x + dt * k3);
+		x = x + dt / 6. * (k1 + 2. * k2 + 2. * k3 + k4);
 
 		double tmp = x.get_x();
 		if(tmp > 0 && liftoff_flg == false)
